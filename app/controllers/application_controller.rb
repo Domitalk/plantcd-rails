@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::API
-    protect_from_forgery prepend: true
     before_action :authorized
 
     def encode_token(payload)

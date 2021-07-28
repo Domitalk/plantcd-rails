@@ -1,5 +1,8 @@
 class Api::V1::UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :show, :update]
+    # this allows users#create to bypass authorized 
+    skip_before_action :authorized, only: [:create]
+    # this forces users#show to get authorized first 
+    before_action :authorized, only: [:show]
 
     def create 
         @user = User.create(user_params)
@@ -12,7 +15,7 @@ class Api::V1::UsersController < ApplicationController
         end
     end 
 
-    def show 
+    def show
         @user = User.find(params[:id])
         render json: @user.to_json
     end 
