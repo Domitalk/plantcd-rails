@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       
     end 
   end 
-  
+
+  post "/login", to: "auth#create"
+
 
 end
