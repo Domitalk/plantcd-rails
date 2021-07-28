@@ -1,24 +1,33 @@
-# README
+users#show (with jwt token in header)
+GET 
+http://localhost:3000/api/v1/users/1
+{ 
+    "user": 
+    { 
+        "user_name": "user_name_1", 
+        "password": "123"
+    }
+}
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+auth#create (/login)
+POST 
+http://localhost:3000/api/v1/login
 
-Things you may want to cover:
+{ 
+    "user": 
+    { 
+        "user_name": "user_name_1", 
+        "password": "123"
+    }
+}
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+users#create (making a new user) 
+POST 
+http://localhost:3000/api/v1/users 
+{ 
+    "user": 
+    { 
+        "user_name": "user_name_1", 
+        "password": "123"
+    }
+}

@@ -1,5 +1,6 @@
 class Api::V1::UsersController < ApplicationController
     # this allows users#create to bypass authorized 
+    # can add anything here to allow for testing or else take the jwt token from /login and send it with header in the postman request 
     skip_before_action :authorized, only: [:create]
     # this forces users#show to get authorized first 
     before_action :authorized, only: [:show]
