@@ -1,8 +1,9 @@
 class FriendshipsController < ApplicationController
+    # this route needs some auth + exemptions for until the product is finished 
     protect_from_forgery with: :exception
 
     def create
-        # this is basically a friendship invite 
+        #  a friendship invite 
         Friendship.create_friendships(
             friendship_params[:user_id], 
             friendship_params[:friend_id]
@@ -12,12 +13,12 @@ class FriendshipsController < ApplicationController
     end
 
     def update 
-        # this is basically a friendship confirmation wherein the update will change the :confirm to true 
+        # a friendship confirmation wherein the update will change the :confirm to true 
 
     end 
 
     def destroy
-        # this will be called when friendship is denied or else defriended 
+        # called when friendship is denied or else defriended 
         Friendship.destroy_friendships(
             friendship_params[:user_id], 
             friendship_params[:friend_id]
