@@ -11,9 +11,11 @@ class Api::V1::UsersController < ApplicationController
         if @user.valid?
             token = encode_token({ user_id: @user.id })
             render json: { user: @user, jwt: token }, status: :accepted
+            # need a new helper for the api so that friends are also returned for the user 
         else
             render json: { error: 'failed to create user' }, status: :not_acceptable
         end
+
     end 
 
     def show

@@ -8,6 +8,7 @@
 
 
 User.destroy_all 
+Friendship.destroy_all
 
 User.create(
     user_name: 'user_name_1',
@@ -22,3 +23,9 @@ User.create(
     user_name: 'user_name_3', 
     password: '123'
 )
+
+Friendship.create(
+    user: User.first,
+    friend: User.last
+)
+
