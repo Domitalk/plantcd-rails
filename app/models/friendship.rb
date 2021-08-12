@@ -2,19 +2,19 @@ class Friendship < ApplicationRecord
     belongs_to :user
     belongs_to :friend, class_name: "User"
 
-    def self.create_reciprocal_for_ids(user_id, friend_id)
-        user_friendship = Friendship.create(user_id: user_id, friend_id: friend_id)
-        friend_friendship = Friendship.create(user_id: friend_id, friend_id: user_id)
+    def self.create_friendships(user_id, friend_id)
+        creator_friendship = Friendship.create(user_id: user_id, friend_id: friend_id)
+        target_friendship = Friendship.create(user_id: friend_id, friend_id: user_id)
 
-        [user_friendship, friend_friendship]
+        [creator_friendship, target_friendship]
     end
 
-    def self.destroy_reciprocal_for_ids(user_id, friend_id)
-        friendship1 = Friendship.find_by(user_id: user_id, friend_id: friend_id)
-        friendship2 = Friendship.find_by(user_id: friend_id, friend_id: user_id)
-        
-        friendship1.destroy
-        friendship2.destroy
+    def self.destroy_friendships(user_id, friend_id)
+        destroyer_friendship = Friendship.find_by(user_id: user_id, friend_id: friend_id)
+        target_friendship = Friendship.find_by(user_id: friend_id, friend_id: user_id)
+
+        destroyer_friendship.destroy
+        target_friendship.destroy
     end
 
     def self.confirm_friendship 

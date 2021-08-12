@@ -26,6 +26,19 @@ User.create(
 
 Friendship.create(
     user: User.first,
-    friend: User.last
+    friend: User.last,
+)
+
+Friendship.create(
+    user: User.last, 
+    friend: User.first
+)
+
+Friendship.first.update(
+    confirmed: true 
+)
+
+Friendship.last.update(
+    confirmed: true 
 )
 
