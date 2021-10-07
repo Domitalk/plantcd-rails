@@ -34,4 +34,8 @@ http://localhost:3000/api/v1/users
 friendships#create (making a friend request) 
 POST 
 http://localhost:3000/api/v1/friendships 
+{
+    "user_id: 28, 
+    "friend_id": 29
+}
 

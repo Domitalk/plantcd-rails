@@ -17,7 +17,9 @@ class Api::V1::FriendshipsController < ApplicationController
 
     def update 
         # a friendship confirmation wherein the update will change the :confirm to true 
+        @confirmArray = Friendship.confirm_friendship(friendship_params[:user_id], friendship_params[:friend_id])
 
+        render json: @confirmArray.to_json
     end 
 
     def destroy
