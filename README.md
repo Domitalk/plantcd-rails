@@ -1,5 +1,5 @@
 <!-- TO-DO  -->
-<!-- make json shaper helper  -->
+<!-- create proper controller actions for friendships  -->
 
 
 users#show (with jwt token in header)
@@ -29,3 +29,9 @@ http://localhost:3000/api/v1/users
         "password": "123"
     }
 }
+
+
+friendships#create (making a friend request) 
+POST 
+http://localhost:3000/api/v1/friendships 
+
