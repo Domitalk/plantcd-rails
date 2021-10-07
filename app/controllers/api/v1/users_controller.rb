@@ -3,27 +3,32 @@ class Api::V1::UsersController < ApplicationController
     # can add anything here to allow for testing or else take the jwt token from /login and send it with header in the postman request 
     skip_before_action :authorized, only: [:create]
     # this forces users#show to get authorized first 
-    before_action :authorized, only: [:show]
+    # before_action :authorized
+    # before_action :authorized, only: [:show]
+
 
     def create 
         @user = User.create(user_params)
 
         if @user.valid?
             token = encode_token({ user_id: @user.id })
+
             render json: { user: @user, jwt: token }, status: :accepted
         else
             render json: { error: 'failed to create user' }, status: :not_acceptable
         end
+
     end 
 
     def show
         @user = User.find(params[:id])
-        render json: @user.to_json
+
+        render json: UserSerializer.new(@user).to_serialized_json
     end 
 
     def index 
         @users = User.all 
-        render json: @user.to_json 
+        render json: @users.to_json 
     end 
         
     private 
