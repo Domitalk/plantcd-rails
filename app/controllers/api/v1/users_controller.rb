@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
     # can add anything here to allow for testing or else take the jwt token from /login and send it with header in the postman request 
     skip_before_action :authorized, only: [:create]
     # this forces users#show to get authorized first 
-    before_action :authorized
+    # before_action :authorized
     # before_action :authorized, only: [:show]
 
 
@@ -23,17 +23,7 @@ class Api::V1::UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
 
-        #####################
-        # TAKE OUT THE BUSINESS LOGIC OF CREATING A GOOD JSON SHAPE FOR THE API IN THE MODELS FOR USER 
-        # replace the @users.to_json with the new helper so it's @user.reshape_to_json
-
-        # need a new helper for the api so that friends are also returned for the user but only the ones in which friendships are confirmed 
-        @confirmed_friends = @user.friends.select do |friend|
-            friend.confirmed
-        end 
-        #####################
-
-        render json: @user.to_json
+        render json: UserSerializer.new(@user).to_serialized_json
     end 
 
     def index 

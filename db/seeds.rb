@@ -18,6 +18,10 @@ User.create(
     user_name: 'user_name_2',
     password: '123'
 )
+User.create(
+    user_name: 'user_name_3', 
+    password: '123'
+)
 
 User.create(
     user_name: 'user_name_3', 
@@ -30,15 +34,12 @@ Friendship.create(
 )
 
 Friendship.create(
-    user: User.last, 
-    friend: User.first
+    user: User.first, 
+    friend: User.second 
 )
 
 Friendship.first.update(
     confirmed: true 
 )
 
-Friendship.last.update(
-    confirmed: true 
-)
 
